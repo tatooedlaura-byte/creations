@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating bubbles background */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main content */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Project grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Project cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .card:nth-child(1)::before { background: linear-gradient(90deg, #ff6b6b, #feca57); }
+        .card:nth-child(2)::before { background: linear-gradient(90deg, #5f27cd, #a29bfe); }
+        .card:nth-child(3)::before { background: linear-gradient(90deg, #00d2d3, #54a0ff); }
+        .card:nth-child(4)::before { background: linear-gradient(90deg, #ff9ff3, #f368e0); }
+        .card:nth-child(5)::before { background: linear-gradient(90deg, #1dd1a1, #10ac84); }
+        .card:nth-child(6)::before { background: linear-gradient(90deg, #ff6b6b, #ee5a24); }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: wiggle 2s ease-in-out infinite;
+            animation-play-state: paused;
+        }
+
+        .card:hover .card-icon {
+            animation-play-state: running;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card:nth-child(1) h2 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); -webkit-background-clip: text; background-clip: text; }
+        .card:nth-child(2) h2 { background: linear-gradient(135deg, #5f27cd, #a29bfe); -webkit-background-clip: text; background-clip: text; }
+        .card:nth-child(3) h2 { background: linear-gradient(135deg, #00d2d3, #0984e3); -webkit-background-clip: text; background-clip: text; }
+        .card:nth-child(4) h2 { background: linear-gradient(135deg, #ff9ff3, #f368e0); -webkit-background-clip: text; background-clip: text; }
+        .card:nth-child(5) h2 { background: linear-gradient(135deg, #1dd1a1, #10ac84); -webkit-background-clip: text; background-clip: text; }
+        .card:nth-child(6) h2 { background: linear-gradient(135deg, #ff6b6b, #feca57); -webkit-background-clip: text; background-clip: text; }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .card-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .card:nth-child(1) .card-link { background: linear-gradient(135deg, #ff6b6b, #feca57); }
+        .card:nth-child(2) .card-link { background: linear-gradient(135deg, #5f27cd, #a29bfe); }
+        .card:nth-child(3) .card-link { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
+        .card:nth-child(4) .card-link { background: linear-gradient(135deg, #ff9ff3, #f368e0); }
+        .card:nth-child(5) .card-link { background: linear-gradient(135deg, #1dd1a1, #10ac84); }
+        .card:nth-child(6) .card-link { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+
+        .card-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: white;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating bubbles -->
+    <div class="bubbles" id="bubbles"></div>
+
+    <div class="container">
+        <!-- Hero -->
+        <header class="hero">
+            <h1>My Creations</h1>
+            <p>A collection of projects built with love and code</p>
+        </header>
+
+        <!-- Projects Grid -->
+        <section class="projects">
+            <a href="https://tatooedlaura-byte.github.io/ourpeople" class="card">
+                <span class="card-icon">👥</span>
+                <h2>OurPeople</h2>
+                <p>Connect and stay in touch with the people who matter most</p>
+                <span class="card-link">Visit</span>
+            </a>
+
+            <a href="https://tatooedlaura-byte.github.io/simlibrary" class="card">
+                <span class="card-icon">🎮</span>
+                <h2>SimLibrary</h2>
+                <p>Manage and organize your Sims game library collection</p>
+                <span class="card-link">Visit</span>
+            </a>
+
+            <a href="https://tatooedlaura-byte.github.io/snipbook" class="card">
+                <span class="card-icon">📝</span>
+                <h2>SnipBook</h2>
+                <p>Save and organize your favorite code snippets</p>
+                <span class="card-link">Visit</span>
+            </a>
+
+            <a href="https://tatooedlaura-byte.github.io/memory-keeper" class="card">
+                <span class="card-icon">💝</span>
+                <h2>Memory Keeper</h2>
+                <p>Preserve and cherish your precious memories</p>
+                <span class="card-link">Visit</span>
+            </a>
+
+            <a href="https://tatooedlaura-byte.github.io/familyrecipes" class="card">
+                <span class="card-icon">🍳</span>
+                <h2>Family Recipes</h2>
+                <p>A digital cookbook for treasured family recipes</p>
+                <span class="card-link">Visit</span>
+            </a>
+
+            <a href="https://tatooedlaura-byte.github.io/road-trip-games" class="card">
+                <span class="card-icon">🚗</span>
+                <h2>Road Trip Games</h2>
+                <p>Retro-style games to play on road trips</p>
+                <span class="card-link">Visit</span>
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Made with ❤️ by <a href="https://github.com/tatooedlaura-byte">tatooedlaura</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating bubbles
+        function createBubbles() {
+            const container = document.getElementById('bubbles');
+            const colors = ['#ff6b6b', '#feca57', '#5f27cd', '#00d2d3', '#ff9ff3', '#1dd1a1', '#54a0ff', '#f368e0'];
+
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                const size = Math.random() * 60 + 20;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 15 + 10;
+
+                bubble.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${left}%;
+                    background: ${color};
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                `;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        createBubbles();
+    </script>
+</body>
+</html>
